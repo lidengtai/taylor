@@ -20,7 +20,10 @@ object SparkRDD {
 //    val listRDD: RDD[Int] = sc.makeRDD(List(1,2,3,4,5,6,7,8,9,10,11))
 
     //从外部存储中创建
-    val fileRDD: RDD[(String, Int)] = sc.textFile("in",4).flatMap(_.split(" ")).map((_,1)).reduceByKey(_+_)
+    val fileRDD: RDD[(String, Int)] = sc.textFile("in",4)
+      .flatMap(_.split(" "))
+      .map((_,1))
+      .reduceByKey(_+_)
 
     fileRDD.saveAsTextFile("output")
   }
