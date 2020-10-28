@@ -1,0 +1,3 @@
+hello hive
+hello hbase
+hello hadoop
