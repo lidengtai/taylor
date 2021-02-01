@@ -23,5 +23,6 @@ public class BlockingQueueDemo {
 
 //        BlockingQueue
 //        LinkedBlockingQueue()
+
     }
 }
