@@ -1,13 +1,13 @@
-package com.tai.demo;
+package com.tai;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DemoApplication {
+public class TaylorApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(TaylorApplication.class, args);
 		System.out.println("hello springboot!!");
 	}
 

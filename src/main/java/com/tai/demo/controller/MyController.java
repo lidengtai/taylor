@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tai.demo.domain.Book;
 
 @RestController
-public class Mycontroller {
+public class MyController {
 	
 	@Autowired
 	private Book book;
 
 	
-	@RequestMapping("/")
+	@RequestMapping("/book")
 	public String index() {
 		return "作者："+book.getAuthor()+"  书名："+book.getName()+" 作者年龄："+book.getAge();
 	}

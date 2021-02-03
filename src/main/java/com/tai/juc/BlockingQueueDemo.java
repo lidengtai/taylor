@@ -13,7 +13,7 @@ import java.util.concurrent.*;
  * LinkedTransferQueue：由链表组成的无界阻塞对列
  * LinkedBlockingDeque：由链表组成的双向阻塞对列
  *
- * @author: toylor
+ * @author: Taylor
  * @create: 2021-02-01 22:52
  **/
 public class BlockingQueueDemo {
