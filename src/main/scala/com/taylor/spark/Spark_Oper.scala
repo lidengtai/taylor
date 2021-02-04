@@ -44,6 +44,5 @@ object Spark_Oper {
     }
     indexRDD.foreach(println)
 
-
   }
 }
