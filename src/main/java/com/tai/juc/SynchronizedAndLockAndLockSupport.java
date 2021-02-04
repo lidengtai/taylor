@@ -35,7 +35,9 @@ public class SynchronizedAndLockAndLockSupport {
 //        synchronizedWaitNotify ();
 //        conditionAwaitSignal();
 
-        lockSupportParkUnpark();
+//        lockSupportParkUnpark();
+
+        manyCondition();
     }
 
     private static void lockSupportParkUnpark() {
@@ -115,5 +117,94 @@ public class SynchronizedAndLockAndLockSupport {
         },"BB").start();
     }
 
+    /**
+     * 优势：多条件精准唤醒
+     */
+    private static void manyCondition() {
 
+        PrintMethod printMethod = new PrintMethod();
+
+        new Thread(()->{
+            for (int i = 0; i < 5; i++) {
+                printMethod.print5();
+            }
+        },"aa").start();
+
+
+        new Thread(()->{
+            for (int i = 0; i < 5; i++) {
+
+                printMethod.print10();
+            }
+        },"bb").start();
+
+        new Thread(()->{
+            for (int i = 0; i < 5; i++) {
+
+                printMethod.print15();
+            }
+        },"cc").start();
+
+    }
+
+}
+class PrintMethod{
+    int number = 1;
+    private Lock lock = new ReentrantLock();
+    private Condition conditionA = lock.newCondition();
+    private Condition conditionB = lock.newCondition();
+    private Condition conditionC = lock.newCondition();
+
+    public void print5(){
+        lock.lock();
+        try{
+            while (number != 1 ){
+                conditionA.await();
+            }
+            for (int i = 0; i < 5; i++) {
+                System.out.println(Thread.currentThread().getName()+" : "+i);
+            }
+
+            number=2;
+            conditionB.signal();
+        }catch (InterruptedException e) {
+            e.printStackTrace();
+        }finally {
+            lock.unlock();
+        }
+    }
+    public void print10(){
+        lock.lock();
+        try{
+            while (number != 2 ){
+                conditionB.await();
+            }
+            for (int i = 0; i < 10; i++) {
+                System.out.println(Thread.currentThread().getName()+" : "+i);
+            }
+            number=3;
+            conditionC.signal();
+        }catch (InterruptedException e) {
+            e.printStackTrace();
+        }finally {
+            lock.unlock();
+        }
+    }
+    public void print15(){
+        lock.lock();
+        try{
+            while (number != 3 ){
+                conditionC.await();
+            }
+            for (int i = 0; i < 15; i++) {
+                System.out.println(Thread.currentThread().getName()+" : "+i);
+            }
+            number=1;
+            conditionA.signal();
+        }catch (InterruptedException e) {
+            e.printStackTrace();
+        }finally {
+            lock.unlock();
+        }
+    }
 }
