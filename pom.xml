@@ -96,7 +96,7 @@
             <version>${curator.version}</version>
         </dependency>
 		<!--hbase相关jar包-->
-		<dependency>
+<!--		<dependency>
 			<groupId>org.apache.hbase</groupId>
 			<artifactId>hbase-client</artifactId>
 			<version>${hbase.version}</version>
@@ -105,10 +105,10 @@
 			<groupId>org.apache.hbase</groupId>
 			<artifactId>hbase-server</artifactId>
 			<version>${hbase.version}</version>
-		</dependency>
+		</dependency>-->
 
 		<!--spark相关jar包-->
-		<dependency>
+<!--		<dependency>
 			<groupId>org.apache.spark</groupId>
 			<artifactId>spark-core_2.11</artifactId>
 			<version>${spark.version}</version>
@@ -152,7 +152,7 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
             <version>5.2.4.Final</version>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>com.baomidou</groupId>
