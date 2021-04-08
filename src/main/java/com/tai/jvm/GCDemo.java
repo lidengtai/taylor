@@ -30,6 +30,7 @@ import java.util.concurrent.TimeUnit;
  * 堆设置
      * -Xms:初始堆大小
      * -Xmx:最大堆大小
+ * -Xms100M -Xmx100M
      * -XX:NewSize=n:设置年轻代大小
      * -XX:NewRatio=n:设置年轻代和年老代的比值。如:为3，表示年轻代与年老代比值为1：3，年轻代占整个年轻代年老代和的1/4
      * -XX:SurvivorRatio=n:年轻代中Eden区与两个Survivor区的比值。注意Survivor区有两个。
@@ -79,8 +80,7 @@ import java.util.concurrent.TimeUnit;
 public class GCDemo {
     public static void main(String[] args) {
         try {
-
-            System.gc();
+//            System.gc();
             System.out.println("hello GC");
 //            System.out.println(Runtime.getRuntime().totalMemory());
 //            System.out.println(Runtime.getRuntime().maxMemory());
@@ -91,8 +91,27 @@ public class GCDemo {
              * java.lang.OutOfMemoryError: Java heap space场景
              * oom 会打印详细信息 分析GC过程
             */
-//            byte[] bytes = new byte[1024*1024*20];
-            TimeUnit.SECONDS.sleep(Integer.MAX_VALUE);
+            new Thread(()->{
+                while (true){
+                    try {
+                        byte[] bytes = new byte[1024*1024*10];
+                        TimeUnit.MILLISECONDS.sleep(100);
+
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+            }
+            },"A").start();
+            new Thread(()->{
+                try {
+                    byte[] bytes = new byte[1024*1024*10];
+                    TimeUnit.MILLISECONDS.sleep(1000);
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            },"B").start();
+//            TimeUnit.SECONDS.sleep(Integer.MAX_VALUE);
 
         } catch (Exception e) {
             e.printStackTrace();

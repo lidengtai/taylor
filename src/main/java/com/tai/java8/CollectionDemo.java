@@ -27,7 +27,7 @@ public class CollectionDemo {
         int testTimes = 5;
         for (int i = 0; i < listSize; i++) {
                 Student student = new Student();
-                student.setId(i + 1l);
+                student.setId(i + 1L);
                 student.setStudentName("name" + i);
                 student.setAge(i);
                 studentList.add(student);

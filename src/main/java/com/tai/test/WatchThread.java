@@ -1,4 +1,4 @@
-package com.tai.demo.test;
+package com.tai.test;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;

@@ -1,4 +1,4 @@
-package com.tai.demo.common;
+package com.tai.common;
 
 import org.springframework.boot.web.server.WebServerFactory;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;

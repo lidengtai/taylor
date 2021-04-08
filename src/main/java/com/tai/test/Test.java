@@ -1,4 +1,4 @@
-package com.tai.demo.test;
+package com.tai.test;
 
 /**
  * @description: 飘号：变量互换
