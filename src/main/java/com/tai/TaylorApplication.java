@@ -8,7 +8,7 @@ public class TaylorApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TaylorApplication.class, args);
-		System.out.println("taylor is running........");
+		System.out.println("taylor server is running........");
 	}
 
 }

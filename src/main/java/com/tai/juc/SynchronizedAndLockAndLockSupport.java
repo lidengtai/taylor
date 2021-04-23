@@ -13,7 +13,7 @@ import java.util.concurrent.locks.ReentrantLock;
  *      Lock 是juc下的具体的类
  * 2 使用方法
  *      synchronized不需要手动释放锁 执行完之后自动释放
- *      主动释放 否则出现死锁
+ *      Lock主动释放 否则出现死锁
  * 3 等待是否可中断
  *      synchronized不可中断 除非异常或者正常运行完成
  *      ReentrantLock 可中断 设置超时 或者代码段中调用interrupt 方法
@@ -35,9 +35,9 @@ public class SynchronizedAndLockAndLockSupport {
 //        synchronizedWaitNotify ();
 //        conditionAwaitSignal();
 
-//        lockSupportParkUnpark();
+        lockSupportParkUnpark();
 
-        manyCondition();
+//        manyCondition();
     }
 
     private static void lockSupportParkUnpark() {
@@ -88,8 +88,8 @@ public class SynchronizedAndLockAndLockSupport {
         Condition condition = lock.newCondition();
         new Thread(()->{
             lock.lock();
-            System.out.println(Thread.currentThread().getName() +" come in");
             try {
+                System.out.println(Thread.currentThread().getName() +" come in");
                 condition.await();
 
                 System.out.println(Thread.currentThread().getName()+" 被唤醒");
